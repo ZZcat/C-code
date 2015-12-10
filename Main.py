@@ -1,7 +1,7 @@
 #!/usr/bin/python
 print "cheacking for updates..."
 import urllib2,os
-response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')html = html.read()
+response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
 html = response.read()
 web_vesion = html[:5]
 f = open('vesion.txt', 'r')
@@ -18,7 +18,6 @@ else:
    com = "git clone https://github.com/ZZcat/C-code.git"
    os.system(com)
    com = "mv C-code " , folder_dir
-
 
 
 
