@@ -4,7 +4,7 @@ import urllib2,os
 response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
 html = response.read()
 web_vesion = html[:5]
-f = open('vesion.txt', 'r')
+f = open('version.txt', 'r')
 vesion = f.read()
 print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
 if vesion == web_vesion:
@@ -142,7 +142,7 @@ if __name__ == '__main__':
           if sock == s:
               # incoming message from remote server, s
               data = sock.recv(4096)
-              if data[0][0] = "[":
+              if data[0][0] == "[":
                  data_ip,data_mess = data.split("]")
                  data_ip,data_waste = data_ip.split("',")
                  data_waste,data_ip = data_ip.split("(")
