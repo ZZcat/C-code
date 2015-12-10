@@ -1,11 +1,30 @@
 #!/usr/bin/python
 print "cheacking for updates..."
-import urllib2
+import urllib2,os
 response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')html = html.read()
 html = response.read()
-html = html[:5]
+web_vesion = html[:5]
+f = open('vesion.txt', 'r')
+vesion = f.read()
+print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
+if vesion == web_vesion:
+   print "You have the newest vesion!"
+else:
+   print "You need to update this program"
+   print "Updating..."
+   raw_input()
+   folder_dir = os.popen("pwd").readlines()
+   folder_dir = folder_dir[:-10]
+   com = "git clone https://github.com/ZZcat/C-code.git"
+   os.system(com)
+   com = "mv C-code " , folder_dir
 
-import pygame,datetime,os,sys,select,socket
+
+
+
+
+
+import pygame,datetime,sys,select,socket
 from datetime import date
 from pygame.locals import *
 pygame.init()
