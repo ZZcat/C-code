@@ -25,9 +25,12 @@ if internet_on:
     os.system(com)
     print com
     
-
+    print "Enabling bash"
+    com = '(cd "'+str(folder)+'C-code/"&&chmod -x r.bash)'   "hmod -x r.bash "
+    
     print "Running program"
     com = '(cd "'+str(folder)+'C-code/"&&./r.bash)'
+    print com
     os.system(com)
     
 else:
