@@ -34,13 +34,13 @@ def chat_server():
                 sockfd, addr = server_socket.accept()
                 SOCKET_LIST.append(sockfd)
                 print "Client (%s, %s) connected" % addr
-                 
                 broadcast(server_socket, sockfd, "[%s:%s] entered our chatting room\n" % addr)
              
             # a message from a client, not a new connection
             else:
                 try:
                     data = sock.recv(RECV_BUFFER)
+                    print data
                     data_ip,data_mess = data.split("]USERNAME:")
                 except:
                     # process data recieved from client, 
