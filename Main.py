@@ -2,53 +2,6 @@
 print "cheacking for updates..."
 import urllib2,os
 
-if input("Update(1 or 0):") == True:
-   try:
-      response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
-      html = response.read()
-      web_vesion = html[:5]
-      f = open('version.txt', 'r')
-      vesion = f.read()
-      print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
-      if vesion == web_vesion:
-         print "You have the newest vesion!"
-      else:
-         print "###You need to update this program"
-         print "###Updating..."
-         print "\n###Reading lines"
-         folder_dir = os.popen("pwd").readlines()
-         print "###Done!!!"
-         print "\n###Cuting varuibal"
-         folder_dir = folder_dir[:-10]
-         print "###Done!!!\n\n###Cloning dicrectory"
-         com = "git clone https://github.com/ZZcat/C-code.git"
-         os.system(com)
-         print "###Done\n\n###Moving directory"
-         com = "mv C-code " , folder_dir
-         print "###Done!!!"
-         print "\n###Removing copy folder"
-         com = "rm C-code"
-         print "###Done!!!"
-   except:
-         print "###You need to update this program"
-         print "###Updating..."
-         print "\n###Reading lines"
-         folder_dir = os.popen("pwd").readlines()
-         print "###Done!!!"
-         print "\n###Cuting varuibal"
-         folder_dir = folder_dir[:-10]
-         print "###Done!!!\n\n###Cloning dicrectory"
-         com = "git clone https://github.com/ZZcat/C-code.git"
-         os.system(com)
-         print "###Done\n\n###Moving directory"
-         com = "mv C-code " , folder_dir
-         print "###Done!!!"
-         print "\n###Removing copy folder"
-         com = "rm C-code"
-         print "###Done!!!"
-
-
-
 
 
 import pygame,datetime,sys,select,socket
@@ -56,6 +9,19 @@ from datetime import date
 from pygame.locals import *
 pygame.init()
 
+try:
+   response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
+   html = response.read()
+   web_vesion = html[:5]
+   f = open('version.txt', 'r')
+   vesion = f.read()
+   print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
+   if vesion == web_vesion:
+      print "You have the newest vesion!"
+   else:
+      pass
+except:
+   print "Your program may need to be updated.  Run update.py to update."
 
 class Button:
    def __init__(self, text):
@@ -170,22 +136,28 @@ if __name__ == '__main__':
           if sock == s:
               # incoming message from remote server, s
               data = sock.recv(4096)
-              if data[0][0] == "[":
-                 data_ip,data_mess = data.split("]")
-                 data_ip,data_waste = data_ip.split("',")
-                 data_waste,data_ip = data_ip.split("(")
-                 data_ip = data_ip[1:]
-                 t9 = t8
-                 t8 = t7
-                 t7 = t6
-                 t6 = t5
-                 t5 = t4
-                 t4 = t3
-                 t3 = t2
-                 t2 = t1
-                 t1 = data_mess
+              print data
+              try:
+                 if 1:#data[0][0] == "[":
+                    data_ip,data_mess = data.split("]")
+                    data_ip,data_waste = data_ip.split("',")
+                    data_waste,data_ip = data_ip.split("(")
+                    data_ip = data_ip[1:]
+                    t9 = t8
+                    t8 = t7
+                    t7 = t6
+                    t6 = t5
+                    t5 = t4
+                    t4 = t3
+                    t3 = t2
+                    t2 = t1
+                    print 1
+                    incoming_message = data_ip+ ":"+ data_mess
+                    print 2
+                    t1 = str(incoming_message)
+              except:
+                  print "Fail"
                            
-              print "ip:",data_ip," Text: ",data,mess
       mouse = pygame.mouse.get_pos()
       for event in pygame.event.get():
          
@@ -305,9 +277,9 @@ if __name__ == '__main__':
          TIME = Button(str(datetime.datetime.now().time()))
       
       if typing == True:
-          TEXT_text = ("Typing...:"+str(text))
+          TEXT_text = ("Typing: "+str(text))
       else:
-          TEXT_text = ("Type here:"+str(text))
+          TEXT_text = ("Type here: "+str(text))
 
 
       T1 = font.render(t1, 1, (255,255,0))
