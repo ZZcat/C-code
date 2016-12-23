@@ -30,7 +30,7 @@ def chat_server():
       
         for sock in ready_to_read:
             # a new connection request recieved
-            if sock == server_socket: 
+            if sock == server_socket:
                 sockfd, addr = server_socket.accept()
                 SOCKET_LIST.append(sockfd)
                 print "Client (%s, %s) connected" % addr
@@ -39,25 +39,30 @@ def chat_server():
              
             # a message from a client, not a new connection
             else:
-                # process data recieved from client, 
                 try:
-                    # receiving data from the socket.
                     data = sock.recv(RECV_BUFFER)
-                    if data:
-                        # there is something in the socket
-                        broadcast(server_socket, sock, "\r" + '[' + str(sock.getpeername()) + '] ' + data)  
-                    else:
-                        # remove the socket that's broken    
-                        if sock in SOCKET_LIST:
-                            SOCKET_LIST.remove(sock)
-
-                        # at this stage, no data means probably the connection has been broken
-                        broadcast(server_socket, sock, "Client (%s, %s) is offline\n" % addr) 
-
-                # exception 
+                    data_ip,data_mess = data.split("]USERNAME:")
                 except:
-                    broadcast(server_socket, sock, "Client (%s, %s) is offline\n" % addr)
-                    continue
+                    # process data recieved from client, 
+                    try:
+                        # receiving data from the socket.
+                        data = sock.recv(RECV_BUFFER)
+                        print data
+                        if data:
+                            # there is something in the socket
+                            broadcast(server_socket, sock, "\r" + '[' + str(sock.getpeername()) + '] ' + data)  
+                        else:
+                            # remove the socket that's broken    
+                            if sock in SOCKET_LIST:
+                                SOCKET_LIST.remove(sock)
+
+                            # at this stage, no data means probably the connection has been broken
+                            broadcast(server_socket, sock, "Client (%s, %s) is offline\n" % addr) 
+
+                    # exception 
+                    except:
+                        broadcast(server_socket, sock, "Client (%s, %s) is offline\n" % addr)
+                        continue
 
     server_socket.close()
     
