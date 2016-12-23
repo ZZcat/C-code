@@ -18,11 +18,18 @@ if internet_on:
     trash,folder = folder.split("'")
 
     print "Removing old directory..."
-    com = "(cd "+str(folder)+"&&rm -rf C-code)"
+    com = "(cd '"+str(folder)+"'&&rm -rf C-code)"
     os.system(com)
-
     print "Updating..."
-    com = "(cd "+str(folder)+"&&git clone https://github.com/ZZcat/C-code.git)"
+    com = '(cd "'+str(folder)+'"&&git clone https://github.com/ZZcat/C-code.git)'
     os.system(com)
+    print com
+    
+
+    print "Running program"
+    com = '(cd "'+str(folder)+'C-code/"&&./r.bash)'
+    os.system(com)
+    
 else:
     print "Unable to connect to ZZcat's github profile"
+    print "Running program in offline mode"
