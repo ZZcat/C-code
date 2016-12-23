@@ -25,7 +25,7 @@ if internet_on:
     os.system(com)
 
     print "Running script"
-    execfile('Main.py')
+    os.system('python Main.py')
     
 else:
     print "Unable to connect to ZZcat's github profile"
