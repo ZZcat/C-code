@@ -1,5 +1,4 @@
 #!/usr/bin/python
-print "cheacking for updates..."
 import urllib2,os
 
 
@@ -8,20 +7,20 @@ import pygame,datetime,sys,select,socket
 from datetime import date
 from pygame.locals import *
 pygame.init()
-
-try:
-   response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
-   html = response.read()
-   web_vesion = html[:5]
-   f = open('version.txt', 'r')
-   vesion = f.read()
-   print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
-   if vesion == web_vesion:
-      print "You have the newest vesion!"
-   else:
-      pass
-except:
-   print "Your program may need to be updated.  Run update.py to update."
+##
+##try:
+##   response = urllib2.urlopen('https://raw.githubusercontent.com/ZZcat/Update-numbers/master/1')
+##   html = response.read()
+##   web_vesion = html[:5]
+##   f = open('version.txt', 'r')
+##   vesion = f.read()
+##   print "Your vesion is ",vesion,"\nThe newest vesion is ", web_vesion
+##   if vesion == web_vesion:
+##      print "You have the newest vesion!"
+##   else:
+##      pass
+##except:
+##   print "Your program may need to be updated.  Run update.py to update."
 
 class Button:
    def __init__(self, text):

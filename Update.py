@@ -25,7 +25,8 @@ if internet_on:
     os.system(com)
 
     print "Running script"
-    os.system('python Main.py')
+    com = '(cd "'+str(folder)+'/C-code"&&python Main.py)'
+    os.system(com)
     
 else:
     print "Unable to connect to ZZcat's github profile"
